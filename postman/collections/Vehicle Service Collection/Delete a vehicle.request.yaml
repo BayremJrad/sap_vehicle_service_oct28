@@ -1,0 +1,48 @@
+$kind: http-request
+description: |-
+  Permanently deletes a vehicle record from the system. This action cannot be undone.
+
+  **URL:** `{{baseUrl}}/vehicles/:id`
+  **Method:** `DELETE`
+
+  ### Path Parameters
+  | Parameter | Type | Required | Description |
+  |---|---|---|---|
+  | `id` | string | Yes | The unique ID of the vehicle to delete |
+
+  ### Request Headers
+  | Header | Value |
+  |---|---|
+  | `Accept` | `application/json` |
+
+  No request body is required.
+
+  ### Responses
+  | Status | Meaning |
+  |---|---|
+  | `204 No Content` | Vehicle was successfully deleted (no response body) |
+  | `500 Internal Server Error` | An unexpected server-side error occurred |
+
+  > **Warning:** Deletion is permanent. Ensure you have the correct vehicle ID before sending this request.
+url: "{{baseUrl}}/vehicles/:id"
+method: DELETE
+headers:
+  Accept: application/json
+pathVariables:
+  - key: id
+    value: "1"
+    $type: |-
+      {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "value"
+        ]
+      }
+settings: {}
+examples: ./.resources/Delete a vehicle.resources/examples
+order: 4000
