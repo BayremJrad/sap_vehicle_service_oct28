@@ -1,0 +1,16 @@
+id: 01a18222-95db-71b8-a10d-b46081cd2fe6
+version: 1
+name: Vehicle Service – Stateful CRUD Mock
+slug: new-mock-f6f81
+enableSession: true
+protocol: http
+port: 4501
+autoRestartOnChange: true
+logging:
+  level: verbose
+  showBody: true
+scenarios:
+  - name: default
+    path: ./default.js
+    default: true
+    id: 01a18235-2f93-7736-b407-248fee16d2f7

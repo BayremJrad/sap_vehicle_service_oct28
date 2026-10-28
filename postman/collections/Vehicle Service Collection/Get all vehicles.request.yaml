@@ -1,0 +1,26 @@
+$kind: http-request
+description: |-
+  Retrieves a list of all vehicle records in the system.
+
+  **URL:** `{{baseUrl}}/vehicles`
+  **Method:** `GET`
+
+  ### Request Headers
+  | Header | Value |
+  |---|---|
+  | `Accept` | `application/json` |
+
+  No request body or path parameters are required.
+
+  ### Responses
+  | Status | Meaning |
+  |---|---|
+  | `200 OK` | Returns an array of all vehicle objects |
+  | `500 Internal Server Error` | An unexpected server-side error occurred |
+url: "{{baseUrl}}/vehicles"
+method: GET
+headers:
+  Accept: application/json
+settings: {}
+examples: ./.resources/Get all vehicles.resources/examples
+order: 5000

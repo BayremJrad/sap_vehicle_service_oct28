@@ -1,0 +1,4 @@
+name: Local Mock environment
+values:
+  - key: baseUrl
+    value: ''

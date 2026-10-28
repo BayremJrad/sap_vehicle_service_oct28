@@ -1,0 +1,119 @@
+$kind: collection
+description: |-
+  # Vehicle Service Collection
+
+  ## Overview
+
+  This collection provides a complete set of **CRUD operations** for the **Vehicle Service API**. It allows you to create, retrieve, update, and delete vehicle records. Use this collection to interact with the Vehicle Service backend, whether against a live server or a mock server for development and testing.
+
+  ---
+
+  ## Base URL
+
+  All requests use the `{{baseUrl}}` variable as the root of the API path:
+
+  ```
+  {{baseUrl}}/vehicles
+  ```
+
+  The `baseUrl` variable is resolved from the active environment. Make sure the **Mock Environment** is selected (or any environment that defines `baseUrl`) before sending requests.
+
+  ---
+
+  ## Authorization
+
+  No authentication is configured at the collection or request level. The API appears to be **open**, or authentication may be handled externally (e.g., by the mock server). If your deployment requires auth, configure it at the collection level under the **Authorization** tab, and all requests will inherit it automatically.
+
+  ---
+
+  ## Endpoints
+
+  | Method | Endpoint | Description |
+  |--------|----------|-------------|
+  | `POST` | `/vehicles` | Create a new vehicle |
+  | `GET` | `/vehicles` | Get all vehicles |
+  | `GET` | `/vehicles/:id` | Retrieve a specific vehicle by ID |
+  | `PATCH` | `/vehicles/:id` | Update a vehicle by ID |
+  | `DELETE` | `/vehicles/:id` | Delete a vehicle by ID |
+
+  ---
+
+  ## Request Details & Response Examples
+
+  ### POST /vehicles — Create a vehicle
+  Creates a new vehicle record. The request body should include vehicle details such as `nickName`, `vin`, `make`, `model`, `year`, and `miles`.
+
+  | Status Code | Description |
+  |-------------|-------------|
+  | `201` | Success — Vehicle created successfully |
+  | `400` | Missing required attribute — Request body is incomplete |
+  | `409` | Vehicle already exists — A vehicle with the same VIN already exists |
+  | `500` | Unexpected error — Server-side error |
+
+  ---
+
+  ### GET /vehicles — Get all vehicles
+  Returns a list of all vehicle records.
+
+  | Status Code | Description |
+  |-------------|-------------|
+  | `200` | Success — Returns an array of vehicles |
+  | `500` | Unexpected error — Server-side error |
+
+  ---
+
+  ### GET /vehicles/:id — Retrieve a vehicle
+  Fetches a single vehicle by its unique ID. Replace `:id` with the vehicle's ID.
+
+  | Status Code | Description |
+  |-------------|-------------|
+  | `200` | Success — Returns the vehicle record |
+  | `404` | Not found — No vehicle found with the given ID |
+  | `500` | Unexpected error — Server-side error |
+
+  ---
+
+  ### PATCH /vehicles/:id — Update a vehicle
+  Partially updates an existing vehicle record. Replace `:id` with the vehicle's ID and provide the fields to update in the request body.
+
+  | Status Code | Description |
+  |-------------|-------------|
+  | `200` | Success — Vehicle updated successfully |
+  | `400` | Bad request body — The request body is invalid or malformed |
+  | `500` | Unexpected error — Server-side error |
+
+  ---
+
+  ### DELETE /vehicles/:id — Delete a vehicle
+  Deletes a vehicle record by its unique ID. Replace `:id` with the vehicle's ID.
+
+  | Status Code | Description |
+  |-------------|-------------|
+  | `204` | Success — Vehicle deleted, no content returned |
+  | `500` | Unexpected error — Server-side error |
+
+  ---
+
+  ## Environment Setup
+
+  This collection is designed to work with the **Mock Environment**, which provides the `baseUrl` variable pointing to the mock server URL.
+
+  To get started:
+  1. Select the **Mock Environment** from the environment dropdown in the top-right corner of Postman.
+  2. The `{{baseUrl}}` variable will be automatically resolved for all requests.
+  3. Send any request to see the predefined mock responses based on the saved examples.
+variables:
+  baseUrl: "{{baseUrl}}"
+scripts:
+  - type: http:afterResponse
+    code: |-
+      pm.test("Status code is 200 or 201", function () {
+          pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);
+      });
+    language: text/javascript
+auth:
+  - id: a141d045-42f2-42ea-a1b0-05ce6b6d07b2
+    type: apikey
+    name: apikey auth
+    credentials:
+      key: X-API-Key

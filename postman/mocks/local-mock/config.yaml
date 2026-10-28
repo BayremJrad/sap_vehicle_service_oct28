@@ -1,0 +1,16 @@
+id: 01a18219-a3bd-7489-9d98-1ae0849d27f4
+version: 1
+name: Local mock
+slug: new-mock-bb859
+enableSession: true
+protocol: http
+port: 4500
+autoRestartOnChange: true
+logging:
+  level: verbose
+  showBody: true
+scenarios:
+  - name: default
+    path: ./default.js
+    default: true
+    id: 01a18235-2a73-74b8-b78f-9c70f02b48da
