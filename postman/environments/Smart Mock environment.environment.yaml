@@ -1,0 +1,4 @@
+name: Smart Mock environment
+values:
+  - key: baseUrl
+    value: ''

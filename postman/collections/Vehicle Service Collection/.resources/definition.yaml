@@ -104,6 +104,13 @@ description: |-
   3. Send any request to see the predefined mock responses based on the saved examples.
 variables:
   baseUrl: "{{baseUrl}}"
+scripts:
+  - type: http:afterResponse
+    code: |-
+      pm.test("Status code is 200 or 201", function () {
+          pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);
+      });
+    language: text/javascript
 auth:
   - id: a141d045-42f2-42ea-a1b0-05ce6b6d07b2
     type: apikey

@@ -57,8 +57,8 @@ body:
   type: json
   content: |-
     {
-      "nickName": "The Lisa Marie",
-      "vin": "4M2DV11W4RDJ53329",
+      "nickName": "Bayrem's carv1",
+      "vin": "4M2DV11W4RDJ53321",
       "make": "Mercury",
       "model": "Villager",
       "year": "1994",
@@ -88,6 +88,13 @@ body:
         }
       }
     }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test("VIN is a string", function () {
+          pm.expect(pm.response.json().vin).to.be.a('string');
+      });
+    language: text/javascript
 settings: {}
 examples: ./.resources/Create a vehicle.resources/examples
 order: 1000
